@@ -29,7 +29,7 @@ export class NumberGenComponent implements OnInit {
   reportData: IReport = {totalAlph : 0, totalDouble : 0, totalInt : 0, totalNumbers : 0, numbers : []};
   isReportShow = false;
   
-progressTimer = interval(10);
+progressTimer = interval(1000);
 progressSubscription: any;
 
   constructor(private numGent: NumberGeneSrvice,public signalRService: SignalrService) { }
