@@ -3,9 +3,15 @@
         <table>
             <tr> 
                 <td>
-                    <input type="checkbox" [checked]="isNumeric" (change)="isNumeric = !isNumeric" > Numeric <br/>
-                    <input type="checkbox" [checked]="isAlpha" (change)="isAlpha = !isAlpha"  > Alpha <br/>
-                    <input type="checkbox" [checked]="isDouble" (change)="isDouble = !isDouble"> Float <br/>
+                    <input type="checkbox" [checked]="isNumeric" (change)="isNumeric = !isNumeric" > Numeric (%)
+                    <input type="number" [(ngModel)]="NumericPercentage" style="margin-left:10px; width:50px;">  <br/>
+                   
+                    <input type="checkbox" [checked]="isAlpha" (change)="isAlpha = !isAlpha"  > Alpha (%)
+                    <input type="number" [(ngModel)]="AlphaPercentage" style="margin-left:25px;  width:50px;">  <br/>
+                   
+                    <input type="checkbox" [checked]="isDouble" (change)="isDouble = !isDouble"> Float (%)
+                    <input type="number" [(ngModel)]="DoublePercentage" style="margin-left:30px;  width:50px;">  <br/>
+                    
                 </td>
                 <td> 
                     <div class="right-content"> 
