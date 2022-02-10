@@ -22,6 +22,9 @@ export class NumberGenComponent implements OnInit {
   isDouble = false;
   isStartClick = false;
   isEndClick = true;
+  NumericPercentage:number = 0;
+  AlphaPercentage:number = 0;
+  DoublePercentage:number = 0;
 
   counter1 = 0;
   counter2 = 0;
@@ -29,8 +32,8 @@ export class NumberGenComponent implements OnInit {
   reportData: IReport = {totalAlph : 0, totalDouble : 0, totalInt : 0, totalNumbers : 0, numbers : []};
   isReportShow = false;
   
-progressTimer = interval(1000);
-progressSubscription: any;
+  progressTimer = interval(1000);
+  progressSubscription: any;
 
   constructor(private numGent: NumberGeneSrvice,public signalRService: SignalrService) { }
 
@@ -41,8 +44,11 @@ progressSubscription: any;
 
   onClickStart(){
     if(this.isValid()){
-      let model : ICommand = {inputSize : this.inputSize, isAlpha : this.isAlpha, isDouble : this.isDouble, isNumeric : this.isNumeric,
-        cType : 1  };
+      let model : ICommand = {inputSize : this.inputSize, isAlpha : this.isAlpha,
+         isDouble : this.isDouble, isNumeric : this.isNumeric,
+        cType : 1, NumericPercentage : this.NumericPercentage, DoublePercentage : this.DoublePercentage, 
+       AlphaPercentage: this.AlphaPercentage  };
+
       this.isStartClick = true;
       this.isEndClick = false;
       this.isReportShow = false;
@@ -53,7 +59,7 @@ progressSubscription: any;
       });
     }
     else
-      alert("Please select ... ");
+      alert("Please input valid data or check the selections ");
   }
 
   onClickEnd(){
@@ -83,8 +89,13 @@ progressSubscription: any;
   
 
   isValid() : boolean{
-    if( (this.isNumeric || this.isDouble || this.isAlpha ) && this.inputSize > 0)
-      return true;
+    if( (this.isNumeric || this.isDouble || this.isAlpha ) && this.inputSize > 0){
+      if( (this.AlphaPercentage + this.NumericPercentage + this.DoublePercentage) === 0
+      || (this.AlphaPercentage + this.NumericPercentage + this.DoublePercentage) === 100)
+        return true;
+      else
+        return false;
+    }
     else
       return false;
   }
