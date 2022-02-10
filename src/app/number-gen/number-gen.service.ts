@@ -16,6 +16,9 @@ export interface ICommand {
   isDouble?:boolean;
   inputSize?:number;
   cType?:number;
+    NumericPercentage?:number;
+  AlphaPercentage?:number ;
+  DoublePercentage?:number ;
 }
 
 export interface IRealTime {
